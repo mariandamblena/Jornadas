@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import ar.jornadas.ui.*
+import ar.jornadas.ui.Portada
+import ar.jornadas.ui.ProgramaModel
 
 class MainActivity : ComponentActivity() {
     private val model: ProgramaModel by viewModels()
@@ -14,11 +15,7 @@ class MainActivity : ComponentActivity() {
             model.mesa.disponible = intent.getBooleanExtra("servicio_disponible", true)
             intent.removeExtra("servicio_disponible")
         }
+        model.iniciar()
         setContent { Portada(model) }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        model.recargar()
     }
 }
